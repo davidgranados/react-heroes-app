@@ -1,10 +1,8 @@
 import React from "react";
-import PropTypes from "prop-types";
+import AppRouter from "./components/routers/AppRouter";
 
 const HeroesApp = (props) => {
-  return <div></div>;
+  return <AppRouter />;
 };
-
-HeroesApp.propTypes = {};
 
 export default HeroesApp;
