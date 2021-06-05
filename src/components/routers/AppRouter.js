@@ -1,20 +1,15 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import { Navbar } from "../ui/Navbar";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import LoginScreen from "../login/LoginScreen";
-import MarvelScreen from "../marvel/MarvelScreen";
-import DcScreen from "../dc/DcScreen";
+import DashboardRoutes from "./DashboardRoutes";
 
-const AppRouter = (props) => {
+const AppRouter = () => {
   return (
     <Router>
       <div>
-        <Navbar />
         <Switch>
-          <Route path="/login" component={LoginScreen} />
-          <Route path="/marvel" component={MarvelScreen} />
-          <Route path="/dc" component={DcScreen} />
-          <Route path="/" component={MarvelScreen} />
+          <Route exact path="/login" component={LoginScreen} />
+          <Route path="/" component={DashboardRoutes} />
         </Switch>
       </div>
     </Router>

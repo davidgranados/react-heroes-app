@@ -1,16 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
 
-const MarvelScreen = props => {
-  return (
-    <div>
-      Marvel
-    </div>
-  );
-};
-
-MarvelScreen.propTypes = {
-  
+const MarvelScreen = () => {
+  return <div>Marvel</div>;
 };
 
 export default MarvelScreen;
