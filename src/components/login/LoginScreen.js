@@ -1,16 +1,24 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { useForm } from "../../hooks/useForm";
 import { AuthContext } from "../../auth/AuthContext";
 import { types } from "../../types/types";
 
-const LoginScreen = ({ history }) => {
-  const [formValues, handleInputChange, formReset] = useForm({
+const LoginScreen = ({ history: { replace } }) => {
+  const [formValues, handleInputChange] = useForm({
     name: "",
     password: "",
   });
   const { authState, authDispatch } = useContext(AuthContext);
 
   const { name, password } = formValues;
+
+  useEffect(() => {
+    const { logged } = authState;
+    if (logged) {
+      replace("/");
+    }
+  }, [authState, replace]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     authDispatch({
@@ -19,9 +27,6 @@ const LoginScreen = ({ history }) => {
         name,
       },
     });
-    const { logged } = authState;
-    logged && history.replace("/");
-    formReset();
   };
   return (
     <div className="container mt-5">
