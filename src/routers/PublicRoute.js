@@ -15,7 +15,7 @@ export const PublicRoute = ({
         !isAuthenticated ? (
           <Component {...props} />
         ) : (
-          <Redirect to="/" />
+          <Redirect to={localStorage.getItem("lastPath") || "/"} />
         )
       }
     />

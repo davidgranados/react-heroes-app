@@ -1,23 +1,17 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { useForm } from "../../hooks/useForm";
 import { AuthContext } from "../../auth/AuthContext";
 import { types } from "../../types/types";
 
-const LoginScreen = ({ history: { replace } }) => {
+
+const LoginScreen = () => {
   const [formValues, handleInputChange] = useForm({
     name: "",
     password: "",
   });
-  const { authState, authDispatch } = useContext(AuthContext);
+  const { authDispatch } = useContext(AuthContext);
 
   const { name, password } = formValues;
-
-  useEffect(() => {
-    const { logged } = authState;
-    if (logged) {
-      replace("/");
-    }
-  }, [authState, replace]);
 
   const handleSubmit = (e) => {
     e.preventDefault();

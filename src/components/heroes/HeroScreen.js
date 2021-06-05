@@ -3,9 +3,6 @@ import { useParams, Redirect } from "react-router-dom";
 import { heroImages } from "../../helpers/heroImages";
 import { getHeroById } from "../../selectors/getHeroById";
 
-// import batman from '../../assets/heroes/dc-batman.jpg'; // estático
-// const heroImages = require.context('../../assets/heroes', true );
-
 const HeroScreen = ({ history }) => {
   const { id } = useParams();
 
@@ -30,9 +27,7 @@ const HeroScreen = ({ history }) => {
     <div className="row mt-5">
       <div className="col-4">
         <img
-          // src={ `../assets/heroes/${ id }.jpg` } // desde public/assets
-          // src={ batman } // import
-          src={heroImages(`./${id}.jpg`)}
+          src={heroImages(`./${id}.jpg`).default}
           alt={superhero}
           className="img-thumbnail animate__animated animate__fadeInLeft"
         />
