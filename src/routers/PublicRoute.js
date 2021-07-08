@@ -1,18 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
-
 import { Route, Redirect } from "react-router-dom";
 
+import { AuthContext } from "../auth/AuthContext";
+
 export const PublicRoute = ({
-  isAuthenticated,
   component: Component,
   ...rest
 }) => {
+  const {
+    authState: { logged },
+  } = useContext(AuthContext);
   return (
     <Route
       {...rest}
       component={(props) =>
-        !isAuthenticated ? (
+        !logged ? (
           <Component {...props} />
         ) : (
           <Redirect to={localStorage.getItem("lastPath") || "/"} />
@@ -23,6 +26,5 @@ export const PublicRoute = ({
 };
 
 PublicRoute.propTypes = {
-  isAuthenticated: PropTypes.bool.isRequired,
   component: PropTypes.func.isRequired,
 };

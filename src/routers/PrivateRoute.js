@@ -1,22 +1,25 @@
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
-
 import { Route, Redirect } from "react-router-dom";
 
+import { AuthContext } from "../auth/AuthContext";
+
 export const PrivateRoute = ({
-  isAuthenticated,
   component: Component,
   location: { pathname, search },
   ...rest
 }) => {
 
   localStorage.setItem("lastPath", pathname + search);
+  const {
+    authState: { logged },
+  } = useContext(AuthContext);
 
   return (
     <Route
       {...rest}
       component={(props) =>
-        isAuthenticated ? (
+        logged ? (
           <Component {...props} />
         ) : (
           <Redirect to="/login" />
@@ -27,6 +30,5 @@ export const PrivateRoute = ({
 };
 
 PrivateRoute.propTypes = {
-  isAuthenticated: PropTypes.bool.isRequired,
   component: PropTypes.func.isRequired,
 };
